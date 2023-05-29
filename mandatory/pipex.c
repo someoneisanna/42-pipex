@@ -6,7 +6,7 @@
 /*   By: ataboada <ataboada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 18:06:53 by ataboada          #+#    #+#             */
-/*   Updated: 2023/05/25 20:11:57 by ataboada         ###   ########.fr       */
+/*   Updated: 2023/05/29 10:40:29 by ataboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 5)
 	{
 		ft_printf("Error: Wrong number of arguments\n");
+		ft_printf("Usage: ./pipex file1 cmd1 cmd2 file2\n");
 		return (1);
 	}
 	if (ft_check_access(argv[1], 1) == 0)
@@ -35,8 +36,6 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	}
 	ft_pipex(fd1, fd2, argv, envp);
-	close(fd1);
-	close(fd2);
 }
 
 int	ft_check_access(char *filename, int file)
@@ -63,7 +62,6 @@ int	ft_check_access(char *filename, int file)
 void	ft_pipex(int fd1, int fd2, char **argv, char **envp)
 {
 	int		pipe_fd[2];
-	int		status;
 	pid_t	pid1;
 	pid_t	pid2;
 
@@ -84,6 +82,6 @@ void	ft_pipex(int fd1, int fd2, char **argv, char **envp)
 		ft_child_process_2(fd2, argv[3], pipe_fd, envp);
 	close(pipe_fd[0]);
 	close(pipe_fd[1]);
-	waitpid(pid1, &status, 0);
-	waitpid(pid2, &status, 0);
+	waitpid(pid1, NULL, 0);
+	waitpid(pid2, NULL, 0);
 }
