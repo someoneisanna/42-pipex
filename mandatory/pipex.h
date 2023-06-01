@@ -6,7 +6,7 @@
 /*   By: ataboada <ataboada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 18:06:43 by ataboada          #+#    #+#             */
-/*   Updated: 2023/05/29 12:01:56 by ataboada         ###   ########.fr       */
+/*   Updated: 2023/06/01 10:08:32 by ataboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <stdlib.h>
 # include <sys/wait.h>
 
-int		ft_check_access(char *filename, int mode);
+int		ft_open_files(char *filename, int mode);
 void	ft_pipex(int fd1, int fd2, char **argv, char **envp);
 char	**ft_get_path(char **envp);
 void	ft_execute(char *cmd, char **envp);

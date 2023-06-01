@@ -6,7 +6,7 @@
 /*   By: ataboada <ataboada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:29:27 by ataboada          #+#    #+#             */
-/*   Updated: 2023/05/29 12:57:17 by ataboada         ###   ########.fr       */
+/*   Updated: 2023/06/01 10:28:20 by ataboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_open_files(char *filename, int file);
 void	ft_here_doc(char *limiter);
 void	ft_execute_pipes(char *cmd, char **envp);
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	int	fd1;
 	int	fd2;
@@ -52,14 +52,13 @@ int	ft_open_files(char *filename, int file)
 	if (file == 1)
 	{
 		if (access(filename, F_OK) < 0)
-			return (ft_printf("Error: file not found\n"));
-		else
-			fd = open(filename, O_RDONLY);
+			fd = -1;
+		fd = open(filename, O_RDONLY);
 	}
 	if (file == 2 || file == 3)
 	{
 		if (access(filename, F_OK) == 0 && access(filename, W_OK) < 0)
-			return (ft_printf("Error: file found, but permission to write denied\n"));
+			fd = -1;
 		else
 		{
 			if (file == 2)
@@ -69,7 +68,7 @@ int	ft_open_files(char *filename, int file)
 		}
 	}
 	if (fd < 0)
-		exit (1);
+		exit (ft_printf("Error: %s\n", strerror(errno)) && 1);
 	return (fd);
 }
 

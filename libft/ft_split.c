@@ -18,7 +18,7 @@
 #include <stdlib.h>
 
 static int ft_strcount(char *str, char c);
-static int ft_strclen(char *str, char c);
+static int ft_wordlen(char *str, char c);
 static char *ft_addword(char *str, char c);
 char **ft_split(char *str, char c);
 
@@ -64,7 +64,7 @@ static int	ft_strcount(char const *str, char c)
 	return (w);
 }
 
-static int	ft_strclen(char const *str, char c, int b)
+static int	ft_wordlen(char const *str, char c, int b)
 {
 	int	i;
 	int	len;
@@ -88,7 +88,7 @@ static char	*ft_addword(char const *str, char c, int b)
 
 	i = b;
 	j = 0;
-	len = ft_strclen(str, c, b);
+	len = ft_wordlen(str, c, b);
 	word = (char *)malloc((len + 1) * sizeof(char));
 	if (!word)
 		return (NULL);

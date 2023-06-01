@@ -6,13 +6,13 @@
 /*   By: ataboada <ataboada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 18:06:53 by ataboada          #+#    #+#             */
-/*   Updated: 2023/05/29 10:40:29 by ataboada         ###   ########.fr       */
+/*   Updated: 2023/06/01 10:12:39 by ataboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int		ft_check_access(char *filename, int mode);
+int		ft_open_files(char *filename, int mode);
 void	ft_pipex(int fd1, int fd2, char **argv, char **envp);
 
 int	main(int argc, char **argv, char **envp)
@@ -26,37 +26,36 @@ int	main(int argc, char **argv, char **envp)
 		ft_printf("Usage: ./pipex file1 cmd1 cmd2 file2\n");
 		return (1);
 	}
-	if (ft_check_access(argv[1], 1) == 0)
-		fd1 = open(argv[1], O_RDONLY);
-	if (ft_check_access(argv[4], 2) == 0)
-		fd2 = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (fd1 < 0 || fd2 < 0)
-	{
-		perror("Error");
+	fd1 = ft_open_files(argv[1], 1);
+	fd2 = ft_open_files(argv[4], 2);
+	if (fd1 == -1 || fd2 == -1)
 		return (1);
-	}
 	ft_pipex(fd1, fd2, argv, envp);
 }
 
-int	ft_check_access(char *filename, int file)
+int	ft_open_files(char *filename, int file)
 {
+	int fd;
+
 	if (file == 1)
 	{
 		if (access(filename, F_OK) < 0)
 		{
-			ft_printf("Error: file not found\n");
-			return (1);
+			perror("Error");
+			return (-1);
 		}
+		fd = open(filename, O_RDONLY);
 	}
 	else if (file == 2)
 	{
 		if (access(filename, F_OK) == 0 && access(filename, W_OK) < 0)
 		{
-			ft_printf("Error: file found, but permission to write denied\n");
-			return (1);
+			perror("Error");
+			return (-1);
 		}
+		fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	}
-	return (0);
+	return (fd);
 }
 
 void	ft_pipex(int fd1, int fd2, char **argv, char **envp)
