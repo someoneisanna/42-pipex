@@ -44,7 +44,7 @@ void	ft_execute(char *cmd, char **envp)
 		cmd_path = ft_strjoin(tmp, cmd_args[0]);
 		free(tmp);
 		if (!cmd_path || !tmp)
-			exit(1);
+			break ;
 		if (access(cmd_path, F_OK | X_OK) == 0)
 			execve(cmd_path, cmd_args, envp);
 		free(cmd_path);

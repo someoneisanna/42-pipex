@@ -35,8 +35,9 @@ int	main(int argc, char **argv, char **envp)
 
 int	ft_open_files(char *filename, int file)
 {
-	int fd;
+	int	fd;
 
+	fd = -1;
 	if (file == 1)
 	{
 		if (access(filename, F_OK) < 0)

@@ -6,7 +6,7 @@
 /*   By: ataboada <ataboada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:29:27 by ataboada          #+#    #+#             */
-/*   Updated: 2023/06/01 10:28:20 by ataboada         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:53:46 by ataboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 	int	fd2;
 	int	index;
 
-	if (ft_strncmp(argv[1], "here_doc", 8) == 0)
+	if (argc > 1 && ft_strncmp(argv[1], "here_doc", 8) == 0)
 	{
 		if (argc < 6)
 			return (ft_printf("Usage: ./pipex here_doc LIMITER cmd cmd1 file"));
@@ -33,7 +33,7 @@ int	main(int argc, char **argv, char **envp)
 	else
 	{
 		if (argc < 5)
-			return (ft_printf("Usage: ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2"));
+			return (ft_printf("Usage: ./pipex file1 cmd1 ... cmdn file2"));
 		index = 2;
 		fd1 = ft_open_files(argv[1], 1);
 		fd2 = ft_open_files(argv[argc - 1], 2);
