@@ -1,8 +1,13 @@
+# ---------------------------------- VARIABLES ---------------------------------
+
 NAME = pipex
+
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+
 RM = rm -f
 MAKE = make -C
+
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
@@ -12,7 +17,7 @@ S_OBJS = $(SRCS:.c=.o)
 BONUS_SRCS = bonus/pipex_bonus.c bonus/pipex_utils_bonus.c
 B_OBJS = $(BONUS_SRCS:.c=.o)
 
-.PHONY: all clean fclean re
+# ------------------------------------ RULES -----------------------------------
 
 all: $(NAME)
 
@@ -34,3 +39,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re bonus

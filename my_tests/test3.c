@@ -5,5 +5,5 @@ int main(void)
 	char *line;
 
 	line = get_next_line(0);
-	printf("%s\n", line);
+	printf("%s", line);
 }

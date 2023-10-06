@@ -6,11 +6,11 @@
 /*   By: ataboada <ataboada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 18:06:55 by ataboada          #+#    #+#             */
-/*   Updated: 2023/05/29 12:03:51 by ataboada         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:38:44 by ataboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 char	**ft_get_path(char **envp)
 {

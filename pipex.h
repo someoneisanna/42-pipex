@@ -6,15 +6,16 @@
 /*   By: ataboada <ataboada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 18:06:43 by ataboada          #+#    #+#             */
-/*   Updated: 2023/06/01 10:08:32 by ataboada         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:45:38 by ataboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "../libft/libft.h"
+// ---------------------------------- INCLUDES ---------------------------------
 
+# include "libft/libft.h"
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -24,6 +25,8 @@
 # include <errno.h>
 # include <stdlib.h>
 # include <sys/wait.h>
+
+// --------------------------------- PROTOTYPES --------------------------------
 
 int		ft_open_files(char *filename, int mode);
 void	ft_pipex(int fd1, int fd2, char **argv, char **envp);

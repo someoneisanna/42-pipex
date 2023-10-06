@@ -6,11 +6,11 @@
 /*   By: ataboada <ataboada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:52:27 by ataboada          #+#    #+#             */
-/*   Updated: 2023/06/23 11:26:27 by ataboada         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:17:30 by ataboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "../pipex_bonus.h"
 
 char	**ft_get_path(char **envp)
 {
@@ -44,7 +44,7 @@ void	ft_execute(char *cmd, char **envp)
 		cmd_path = ft_strjoin(tmp, cmd_args[0]);
 		free(tmp);
 		if (!cmd_path || !tmp)
-			exit (1);
+			break ;
 		if (access(cmd_path, F_OK | X_OK) == 0)
 			execve(cmd_path, cmd_args, envp);
 		free (cmd_path);

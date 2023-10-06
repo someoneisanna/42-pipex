@@ -4,7 +4,7 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
-//This will test the functions EXECVE, FORK, PIPE, UNLINK and WAIT
+// This will test the functions EXECVE, FORK, PIPE, UNLINK and WAIT
 
 int	main(void)
 {
@@ -15,7 +15,7 @@ int	main(void)
 		return 1;
 	}
 
-	pid_t pid = fork(); //we use FORK to create a child process
+	pid_t pid = fork(); // we use FORK to create a child process
 	if (pid == -1)
 	{
 		perror("Error creating child process");
@@ -23,9 +23,9 @@ int	main(void)
 	}
 	if (pid == 0)
 	{
-		//child process
-		close (pipe_fd[0]); //we close the read end of the pipe
-		dup2(pipe_fd[1], 1); //we use DUP2 to duplicate the write end of the pipe and change the file descriptor number
+		// CHILD process
+		close (pipe_fd[0]); // we close the read end of the pipe
+		dup2(pipe_fd[1], 1); // we use DUP2 to redirect the output to the pipe
 		close(pipe_fd[1]); //we close the write end of the pipe
 
 		char *program_path = "/bin/ls";
@@ -42,24 +42,18 @@ int	main(void)
 	}
 	else
 	{
-		//parent process
+		// PARENT process
 		close(pipe_fd[1]); //we close the write end of the pipe
 		char buffer[1024];
 		int bytes_read = read(pipe_fd[0], buffer, 1024); //we read from the pipe
 		close(pipe_fd[0]); //we close the read end of the pipe
 
 		if (bytes_read > 0)
-		{
 			printf("Output from child process:\n%s\n", buffer);
-		}
 		else if (bytes_read == 0)
-		{
 			printf("No output from child process\n");
-		}
 		else
-		{
 			perror("Error reading from pipe");
-		}
 
 		int status;
 		wait(&status); //we use WAIT to wait for the child process to finish
@@ -75,12 +69,6 @@ int	main(void)
 		else
 		{
 			printf("Child process exited with unknown status\n");
-		}
-
-		if (unlink("b.txt") == -1) //we use UNLINK to delete a file
-		{
-			perror("Error unlinking pipe");
-			return 1;
 		}
 	}
 }

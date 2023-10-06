@@ -6,11 +6,11 @@
 /*   By: ataboada <ataboada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 18:06:53 by ataboada          #+#    #+#             */
-/*   Updated: 2023/06/01 10:12:39 by ataboada         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:42:58 by ataboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 int		ft_open_files(char *filename, int mode);
 void	ft_pipex(int fd1, int fd2, char **argv, char **envp);
