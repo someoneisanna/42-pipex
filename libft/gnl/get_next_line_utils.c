@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ataboada <ataboada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 12:40:37 by ataboada          #+#    #+#             */
-/*   Updated: 2023/05/14 16:56:47 by ataboada         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:20:22 by ataboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
-size_t	ft_strclen(const char *str, int c)
+size_t	gnl_strclen(const char *str, int c)
 {
 	int	len;
 
@@ -26,7 +26,7 @@ size_t	ft_strclen(const char *str, int c)
 	return (len);
 }
 
-char	*ft_strchr(const char *str, int c)
+char	*gnl_strchr(const char *str, int c)
 {
 	int		i;
 
@@ -44,7 +44,7 @@ char	*ft_strchr(const char *str, int c)
 	return (NULL);
 }
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*gnl_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t		i;
 	char		*s;
@@ -63,7 +63,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-char	*ft_merge_strs(char *s1, char const *s2)
+char	*gnl_merge_strs(char *s1, char const *s2)
 {
 	size_t	len_1;
 	size_t	len_2;
@@ -71,21 +71,21 @@ char	*ft_merge_strs(char *s1, char const *s2)
 
 	len_1 = 0;
 	if (s1)
-		len_1 = ft_strclen(s1, '\0');
-	len_2 = ft_strclen(s2, '\0');
+		len_1 = gnl_strclen(s1, '\0');
+	len_2 = gnl_strclen(s2, '\0');
 	merged = (char *)malloc(sizeof(char) * (len_1 + len_2 + 1));
 	if (!merged)
 		return (NULL);
 	if (s1)
-		ft_memcpy(merged, s1, len_1);
-	ft_memcpy(merged + len_1, s2, len_2);
+		gnl_memcpy(merged, s1, len_1);
+	gnl_memcpy(merged + len_1, s2, len_2);
 	merged[len_1 + len_2] = '\0';
 	if (s1)
 		free(s1);
 	return (merged);
 }
 
-char	*ft_dupstr(const char *s, size_t n)
+char	*gnl_dupstr(const char *s, size_t n)
 {
 	char	*dup;
 	size_t	i;

@@ -3,40 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ataboada <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ataboada <ataboada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:57:28 by ataboada          #+#    #+#             */
-/*   Updated: 2023/05/15 15:18:40 by ataboada         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:37:10 by ataboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-static int ft_strcount(char *str, char c);
-static int ft_wordlen(char *str, char c);
-static char *ft_addword(char *str, char c);
-char **ft_split(char *str, char c);
-
-int main(void)
-{
-	int i;
-	char **split;
-
-	split = ft_split("how are   youdoing   there mate  ", ' ');
-
-	i = 0;
-	while (split[i])
-	{
-		printf("%s\n", split[i]);
-		i++;
-	}
-}
-*/
 
 static int	ft_strcount(char const *str, char c)
 {
@@ -64,7 +38,7 @@ static int	ft_strcount(char const *str, char c)
 	return (w);
 }
 
-static int	ft_wordlen(char const *str, char c, int b)
+static int	ft_strclen(char const *str, char c, int b)
 {
 	int	i;
 	int	len;
@@ -88,7 +62,7 @@ static char	*ft_addword(char const *str, char c, int b)
 
 	i = b;
 	j = 0;
-	len = ft_wordlen(str, c, b);
+	len = ft_strclen(str, c, b);
 	word = (char *)malloc((len + 1) * sizeof(char));
 	if (!word)
 		return (NULL);
@@ -102,7 +76,16 @@ static char	*ft_addword(char const *str, char c, int b)
 	return (word);
 }
 
-char	**ft_split(char const *str, char c)
+/**
+ * @brief Allocates (with malloc(3)) and returns an array of strings obtained by
+ * splitting the string ’s’ using the character ’c’ as a delimiter. The array
+ * will have a NULL pointer at the end.
+ * @param s The string to be split.
+ * @param c The delimiter character.
+ * @return The array of new strings resulting from the split. NULL if the memory
+ * allocation fails.
+ */
+char	**ft_split(char const *s, char c)
 {
 	int		i;
 	int		j;
@@ -110,18 +93,18 @@ char	**ft_split(char const *str, char c)
 
 	i = 0;
 	j = 0;
-	if (!str)
+	if (!s)
 		return (NULL);
-	strs = (char **)malloc(sizeof(char *) * (ft_strcount(str, c) + 1));
+	strs = (char **)malloc(sizeof(char *) * (ft_strcount(s, c) + 1));
 	if (!strs)
 		return (NULL);
-	while (*(str + i))
+	while (*(s + i))
 	{
-		while (*(str + i) && *(str + i) == c)
+		while (*(s + i) && *(s + i) == c)
 			i++;
-		if (*(str + i))
-			strs[j++] = ft_addword(str, c, i++);
-		while (*(str + i) && *(str + i) != c)
+		if (*(s + i))
+			strs[j++] = ft_addword(s, c, i++);
+		while (*(s + i) && *(s + i) != c)
 			i++;
 	}
 	strs[j] = NULL;

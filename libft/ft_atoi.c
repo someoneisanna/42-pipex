@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ataboada <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ataboada <ataboada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:50:21 by ataboada          #+#    #+#             */
-/*   Updated: 2023/05/08 18:50:24 by ataboada         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:34:40 by ataboada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-#include <stdio.h>
-#include <ctype.h>
-
-static int ft_isspace(char c);
-int ft_atoi(const char *str);
-
-int main(void)
-{
-    char str[] = "        -123478ab567";
-	printf("%d", ft_atoi(str));
-}
-*/
 
 static int	ft_isspace(char c)
 {
@@ -36,7 +22,10 @@ static int	ft_isspace(char c)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+/// @brief Converts a string to an integer.
+/// @param s The string to be converted.
+/// @return The integer converted from the string.
+int	ft_atoi(const char *s)
 {
 	int	i;
 	int	res;
@@ -45,21 +34,21 @@ int	ft_atoi(const char *str)
 	i = 0;
 	res = 0;
 	sig = 1;
-	while (ft_isspace(str[i]) == 1)
+	while (ft_isspace(s[i]) == 1)
 	{
 		i++;
 	}
-	if (str[i] == '-' || str[i] == '+')
+	if (s[i] == '-' || s[i] == '+')
 	{
-		if (str[i] == '-')
+		if (s[i] == '-')
 		{
 			sig = -1;
 		}
 		i++;
 	}
-	while (ft_isdigit(str[i]))
+	while (ft_isdigit(s[i]))
 	{
-		res = res * 10 + str[i] - '0';
+		res = res * 10 + s[i] - '0';
 		i++;
 	}
 	return (sig * res);
